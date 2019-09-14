@@ -15,6 +15,15 @@ module.exports = function(app) {
                 user.scores[i] =  parseInt(user.scores[i])
             }
 
+        let bestFriendIndex = 0;
+        let minDifference = 40; 
+
+        for(var i=0; i < friends.length; i++) {
+            
+            var totalDifference = 0;
+            for (var j= 0; j <friends[i].scores.length; j++ )
+            let totalDifference = Math.abs(users.scores[j] - friends[i].scores[j])
+        }
 
 
          })
