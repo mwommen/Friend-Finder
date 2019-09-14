@@ -9,47 +9,34 @@ module.exports = function(app) {
          app.post("/api/friends", function(req,res) {
             console.log(req.body.scores)
             
-            let user = req.body;
+            let user = req.body.scores;
 
-            for (var i = 0; i <user.scores.length; i++) {
-                user.scores[i] =  parseInt(user.scores[i])
+            for (var i = 0; i < user.length; i++) {
+                user[i] =  parseInt(user[i])
             }
 
         let bestFriendIndex = 0;
-        let minDifference = 40; 
+        let minDifference = Infinity; 
 
         for(var i=0; i < friends.length; i++) {
             
-            var totalDifference = 0;
-            for (var j= 0; j <friends[i].scores.length; j++ )
-            let totalDifference = Math.abs(users.scores[j] - friends[i].scores[j])
+            let totalDifference = 0;
+            for (var j= 0; j < friends[i].scores.length; j++){
+                totalDifference += Math.abs(user[j] - friends[i].scores[j])
+            }
+            if (totalDifference < minDifference) {
+                bestFriendIndex = i;
+                 minDifference = totalDifference;
+            }
         }
+
+        friends.push(user)
+        ///DOwn ehre bestFirnedIndex should be the min
+        // return json
+        res.json(friends[bestFriendIndex]);
+
+
 
 
          })
-
-
-
-
 }
-
-
-
-
-
-
-
-
-// var path = require('path');
-
-
-// module.exports = function(app) {
-//     app.get('/Survey', function(req, res) {
-//         res.sendFile(path.join(__dirname, "/../public/survey.html"))
-//     });
-// };
-
-// app.use(function(req,res) {
-//     res.sendFile(path.join(__dirname, "/../public/home.html"))
-
-// }); 
