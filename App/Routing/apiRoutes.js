@@ -1,5 +1,5 @@
 
-var friends = require ("../data/friends.js");
+var friends = require ("../Data/friends.js");
 
 module.exports = function(app) {
     app.get('/api', function(req,res) {
